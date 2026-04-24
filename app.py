@@ -1,3 +1,4 @@
+
 import streamlit as st
 import sqlite3
 import pandas as pd
@@ -66,7 +67,7 @@ if menu == "Home":
         stops = st.selectbox("Total Stops", ["non-stop", "1 stop", "2 stops",'3 stops', '4 stops'])
         dep_time = st.time_input("Departure Time")
 
-    # Prediction Logic
+    # ============================Prediction Logic=============================
     def predict_price(airline, stops):
         base_price = 3500
 
@@ -90,7 +91,7 @@ if menu == "Home":
 
         return round(base_price * airline_factor[airline] * stop_factor[stops], 2)
 
-    # Predict Button
+    # =====================Predict Button================================
     if st.button("🚀 Predict Price"):
         price = predict_price(airline, stops)
 
@@ -111,7 +112,7 @@ if menu == "Home":
 
         st.success(f"💰 Estimated Flight Price: ₹ {price}")
 
-    # History
+    # =========================History====================================
     st.subheader("📊 Prediction History")
     df = pd.read_sql("SELECT * FROM flight_predictions ORDER BY id DESC", conn)
     st.dataframe(df)
