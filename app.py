@@ -110,8 +110,22 @@ if menu == "Home":
         ))
         conn.commit()
 
-        st.success(f"💰 Estimated Flight Price: ₹ {price}")
+        st.markdown(f"""
+    <div style="
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: Black;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    ">
+    💰 Estimated Flight Price: ₹ {price}
+    </div>
+     
+     """, unsafe_allow_html=True) 
 
+       
     # =========================History====================================
     st.subheader("📊 Prediction History")
     df = pd.read_sql("SELECT * FROM flight_predictions ORDER BY id DESC", conn)
